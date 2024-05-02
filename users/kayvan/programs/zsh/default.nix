@@ -45,7 +45,7 @@ in
       "HISTFILESIZE" = "1000000000"; # Bigger history files for all users
       "HISTSIZE" = "1000000000";
       "HISTTIMEFORMAT"="[%F %T] ";
-      "PATH" = "$PATH:$HOME/bin:$HOME/.cabal/bin:$HOME/.local/bin";
+      "PATH" = "$PATH:$HOME/bin:$HOME/.cabal/bin:$HOME/.local/bin:~/.cargo/bin";
       DIRENV_ALLOW_NIX=1;
     };
     oh-my-zsh = {

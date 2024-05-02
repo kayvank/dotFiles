@@ -73,7 +73,7 @@ in {
             email = "kayvan.kazeminejad@iohk.io";
             userName = "kayvank";
             sshCommand = "ssh -i ~/.ssh/id_rsa_q2io";
-            signingkey = "4BA73381BCAE8840";
+            signingkey = "D2B4E616C9524F86";
           };
         };
       }
@@ -106,8 +106,9 @@ in {
       }
     ];
 
-    # signingkey = "D2B4E616C9524F86";
-    # userEmail = "kayvan@q2io.com";
-    # userName = "kayvank";
+     signing.key = "D2B4E616C9524F86";
+     signing.signByDefault=true;
+     userEmail = "kayvan@q2io.com";
+     userName = "kayvank";
   };
 }
