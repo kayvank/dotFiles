@@ -58,7 +58,7 @@ let
     pgadmin4             # postgres admin
     pgformatter          # postgresql sql syntax beatifier
     polybar              # use with xmonad bar
-    python311Full         # pythong
+    # python311Full         # pythong
     postgresql
     prettyping           # a nicer pingpdfmixtool
     ranger               # terminal file explorer
@@ -67,9 +67,9 @@ let
     ripgrep              # fast grep
     # rnix-lsp             # nix lsp server
     sbcl                 # lisp compiler
-    sqlite               # db sqlite
     signal-desktop       # encrypted com
-    starship             # zsh prompt
+    shfmt                # a shell parser and formatter
+    sqlite               # db sqlite
     slack                # messaging client
     # terraform            # terraform
     termonad             # haskell terminal emulator
@@ -92,7 +92,7 @@ let
   home.stateVersion = "22.05";
 
   pythonPkgs = with pkgs.python311Packages;[
-    ipython
+    # ipython
     pip
   ];
   gitPkgs = with pkgs.gitAndTools; [
@@ -108,6 +108,8 @@ let
     hoogle                  # documentation
     implicit-hie
     xmobar
+    ghc
+    ghcid
   ];
 
   xmonadPkgs = with pkgs; [
@@ -119,6 +121,10 @@ let
     xorg.xmodmap           # keymaps modifier
     xorg.xrandr            # display manager (X Resize and Rotate protocol)
     xorg.xdpyinfo
+  ];
+
+  nodePkgs = with pkgs.NodePackages; [
+    bash-language-server
   ];
 
 in
@@ -183,9 +189,11 @@ in
   systemd.user.startServices = "sd-switch";
 
   programs = {
-    bash.enable = false;
+    # bash.enable = true;
+    zsh.enable = true;
     emacs = {
       enable = true;
+      package = pkgs.emacs29-gtk3;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
       extraPackages = epkgs: [
         epkgs.nix-mode
         epkgs.magit
@@ -204,6 +212,7 @@ in
     direnv = {
       enable = true;
       enableZshIntegration = true;
+      # enableBashIntegration = true;
       nix-direnv.enable = true;
     };
     jq.enable = true;
@@ -220,16 +229,12 @@ in
         HostName q2io.dev
         User q2io
 #
-        Host saturn-vm
-        HostName 192.168.183.188
+        Host testbox
+        HostName 192.168.122.23
         User kayvan
 #
         Host saturn-t480
         HostName 192.168.183.240
-        User kayvan
-
-        Host saturn-xeon
-        HostName 192.168.183.166
         User kayvan
 #
         Host github.com
@@ -247,6 +252,7 @@ in
     };
     zoxide = {
       enable = true;
+      # enableBashIntegration = true;
       enableZshIntegration = true;
       options = [];
     };

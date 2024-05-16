@@ -62,10 +62,8 @@ in {
       "*.jvmopts" # should be local to every project
     ];
     includes = [
-      { path = "configX.inc"; }
       {
-        # path = "configX/conditional.inc";
-        condition = "gitdir:**/workspace-iohk/**/.git";
+        condition = "gitdir:~/dev/workspaces/workspace-iohk/**/.git";
         contentSuffix = "gitconfig-iohk";
         contents = {
           user = {
@@ -79,7 +77,7 @@ in {
       }
 
       {
-        condition = "gitdir:**/workspace-q2io/**/.git";
+        condition = "gitdir:~/dev/worksapces/workspace-q2io/**/.git";
         contentSuffix = "gitconfig-q2io";
         contents = {
           user = {
@@ -92,7 +90,7 @@ in {
         };
       }
       {
-        condition = "gitdir:**/workspace-schwarzer-swan/**/.git";
+        condition = "gitdir:~/dev/workspaces/workspace-schwarzer-swan/**/.git";
         contentSuffix = "gitconfig-schwarzer-swan";
         contents = {
           user = {
@@ -104,11 +102,24 @@ in {
           };
         };
       }
+{
+        condition = "gitdir:~/.config/**/.git";
+        contentSuffix = "gitconfig-q2io";
+        contents = {
+          user = {
+            name = "kayvan Kazeminejad";
+            email = "kayvan@q2io.com";
+            userName = "kayvank";
+            sshCommand = "ssh -i ~/.ssh/id_rsa_q2io";
+            signingkey = "D2B4E616C9524F86";
+          };
+        };
+      }
     ];
 
-     signing.key = "D2B4E616C9524F86";
-     signing.signByDefault=true;
-     userEmail = "kayvan@q2io.com";
-     userName = "kayvank";
+     # signing.key = "D2B4E616C9524F86";
+     # signing.signByDefault=true;
+     # userEmail = "kayvan@q2io.com";
+     # userName = "kayvank";
   };
 }

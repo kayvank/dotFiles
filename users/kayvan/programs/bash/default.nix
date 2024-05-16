@@ -20,11 +20,8 @@ in
       ping      = "prettyping";
       pbcopy    = "xsel -ib";
       pbpaste   = "xsel -ob";
-      whaskell  = "cd ~/dev/workspaces/workspace-haskell";
-      wsoos     = "cd ~/dev/workspaces/workspace-soostone";
-      wproto    = "cd ~/dev/workspaces/workspace-proto";
-      wnixos    = "cd ~/dev/workspaces/workspace-nixos";
-      wniohk    = "cd ~/dev/workspaces/workspace-iohk";
+      wiohk    = "cd ~/dev/workspaces/workspace-iohk";
+      wq2io   = "cd ~/dev/workspaces/workspace-q2io";
     };
     sessionVariables = { ## shell env vars are set here
       "EDITOR" = "vim";
@@ -33,7 +30,7 @@ in
       "HISTSIZE" = "1000000000";
       "HISTTIMEFORMAT"="[%F %T] ";
       DIRENV_ALLOW_NIX=1;
-      PATH="$PATH:~/bin";
+      PATH="$PATH:~/bin:~/.cargo/bin";
     };
     initExtra   = bashConfig;
   };
