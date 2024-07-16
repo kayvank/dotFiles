@@ -1,7 +1,17 @@
 { pkgs, ...}:
 
 let
+  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    xmobar &
+    blueman-applet &
+    nm_applet &
+    pa-applet &
+    dunst &
+'';
+
+    # feh -Zx ~/.config/wallpapers/saturn.jpg
   extra = ''
+    ${startupScript}/bin/start
     ${pkgs.util-linux}bin/setterm -blank 0 -powersave off -powerdown 0
     ${pkgs.xorg.xset}/bin/xset s off
     ${pkgs.xcape}/bin/xcape -e "Hyper_L=Tab;Hyper_R=backslash"
@@ -24,8 +34,9 @@ in
   };
   xsession = {
     enable = true;
-
+ preferStatusNotifierItems = true;
     initExtra = extra;
+
 
     windowManager.xmonad = {
       enable = true;

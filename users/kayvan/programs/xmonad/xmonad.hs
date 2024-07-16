@@ -284,12 +284,10 @@ myLogHook = return ()
 
 myStartupHook = do
   spawnOnce "xscreensaver"
-  -- spawnOnce "feh --bg-fill ~/.config/dotfiles/wallpapers/saturn-moon-cassini.jpg"
-  spawnOnce "xmobar "
-  spawnOnce "blueman-applet"
-  spawnOnce "nm-applet"
-  spawnOnce "pa-applet"
-  -- spawnOnce "flameshot"
+  -- spawnOnce "xmobar "
+  -- spawnOnce "blueman-applet"
+  -- spawnOnce "nm-applet"
+  -- spawnOnce "pa-applet"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 

@@ -12,6 +12,7 @@ let
     aspellDicts.en       # Aspell dictionary for English
     awscli2              # asw cli
     bashmount            # mount usb
+    bgs # Extremely fast and small background setter for X
     brightnessctl        # Xbacklight (Hardware Level)
     blueman              # GTK-based Bluetooth Manager
     cmake
