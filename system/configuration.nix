@@ -50,6 +50,14 @@ in {
   };
   time.timeZone = "America/Los_Angeles";
   services = {
+      libinput = {
+        enable = true;
+        touchpad = {
+          disableWhileTyping = true;
+          tapping = true;
+          buttonMapping = "lmr";
+        };
+      };
     xserver = {
       enable = true;
       displayManager = {
@@ -59,14 +67,6 @@ in {
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
-      };
-      libinput = {
-        enable = true;
-        touchpad = {
-          disableWhileTyping = true;
-          tapping = true;
-          buttonMapping = "lmr";
-        };
       };
     };
     gnome.gnome-keyring.enable = true;
@@ -116,7 +116,7 @@ in {
   };
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
     home-manager
@@ -168,7 +168,7 @@ in {
 
     # Required by Cachix to be used as non-root user
     settings = {
-      trusted-users = [ "root" "kayvan" "@wheel"];
+      trusted-users = [ "root" "kayvan" "@wheel" ];
       auto-optimise-store = true;
     };
   };

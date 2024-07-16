@@ -24,6 +24,7 @@ in
       wq2io     = "cd ~/dev/workspaces/workspace-q2io";
       wiohk     = "cd ~/dev/workspaces/workspace-iohk";
       tmx       = "tmux new-session -s $USER-`date +%s`";
+      ls        = "ls --hyperlink=auto --color=tty";
     };
 
     shellGlobalAliases = {

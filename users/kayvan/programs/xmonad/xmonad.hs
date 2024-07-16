@@ -30,7 +30,7 @@ import           XMonad.Util.SpawnOnce
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "termonad" -- "konsole"
+myTerminal = "kitty" --  "termonad"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -91,7 +91,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((noModMask, xF86XK_MonBrightnessUp), spawn "/run/current-system/sw/bin/light -A 10"),
       ((noModMask, xF86XK_MonBrightnessDown), spawn "/run/current-system/sw/bin/light -U 10"),
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
-      -- launch dmenu
+      -- launch rofi
       ((modm, xK_p), spawn "rofi -sidebar-mode -show run"),
       -- launch emacs
       ((modm, xK_e), spawn "emacs"),
@@ -101,6 +101,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_z), spawn "multilockscreen -l dim"),
       -- launch slack
       ((modm, xK_F2), spawnOn comWs "slack"),
+      -- launch nemo file browser
+      ((modm, xK_F3), spawnOn comWs "nemo"),
+      -- launch www browser
+      ((modm, xK_F4), spawnOn comWs "brave"),
       -- close focused window
       ((modm .|. shiftMask, xK_BackSpace), killAll),
       ((modm , xK_BackSpace), kill),

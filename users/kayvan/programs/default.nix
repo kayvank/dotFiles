@@ -1,8 +1,8 @@
 [
-  ./rofi
+  ./rofi ## menu
   ./tmux
   ./zsh
-  # ./bash
+  ./kitty ## terminal
   ./xmonad
   ./git
   ./networkmanager

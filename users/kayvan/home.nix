@@ -14,7 +14,6 @@ let
     bashmount            # mount usb
     brightnessctl        # Xbacklight (Hardware Level)
     blueman              # GTK-based Bluetooth Manager
-    # brave              # www browser, installed at system levele, no need to install it here.
     cmake
     cowsay               # cow shell ouput
     docker-compose       # docker manager
@@ -22,7 +21,6 @@ let
     direnv               # customize env per directory
     element              #  Periodic table
     element-desktop      #  A feature-rich client for Matrix.org
-    # evince               # gnume document viewer
     eza                  # a better `ls`
     fd                   # "find" for files
     feh                  # image viewer
@@ -30,48 +28,39 @@ let
     firefox
     gcc                  # C/C++
     gh                   # github CLI tool
-    # google-cloud-sdk     # gcp sdk
-    # google-chrome        # google web browser
-    # google-drive-ocamlfuse # mount your Google Drive
     grafana
     gimp                 # gnu image manipulation program
     glow                 # terminal markdown viewer
     gnumake              # A tool to control the generation of non-source files from sources
     graphviz             # grapsh visualization tool
     gvfs                 # gnu Virtual Filesystem support library
-    # ipython
-    jupyter
     irony-server         # c/c++ minor mode, emacs
     ispell               # An interactive spell-checking program for Unix usec by emacs
     killall              # kill processes by name
+    # kitty
     libnotify            # notify-send command
     libreoffice          # mostly for the pdf editor
     lsof                 # A tool to list open files
     multilockscreen      # fast lockscreen based on i3lock
     cinnamon.nemo        # file explorer
     neofetch             # command-line system information
-    nixfmt               # format nix files
-    nix-index            #  locate the package providing a certain file in nixpkgs
+    nixfmt-classic       # format nix files
     nix-prefetch-git
     rclone              # sync with gdrive
     pa_applet            # pulseaudio applet for trayer
-    pgadmin4             # postgres admin
     pgformatter          # postgresql sql syntax beatifier
     polybar              # use with xmonad bar
-    # python311Full         # pythong
     postgresql
     prettyping           # a nicer pingpdfmixtool
     ranger               # terminal file explorer
     rtags                # C/C++ client-server indexer based on clang
     # redis                # redis
     ripgrep              # fast grep
-    # rnix-lsp             # nix lsp server
     sbcl                 # lisp compiler
     signal-desktop       # encrypted com
     shfmt                # a shell parser and formatter
     sqlite               # db sqlite
     slack                # messaging client
-    # terraform            # terraform
     termonad             # haskell terminal emulator
     tmate                # tmux like Terminal Sharing
     tree                 # display files in a tree view
@@ -80,6 +69,7 @@ let
     virt-manager         # mange vms
     virt-viewer          # view vmx
     vscode               # ms visual studio
+    watchexec            # execute commands in response to file change
     xsel                 # clipboard support (also for neovim)
     xclip                # copy pate like mac does
     yarn                 # js build
@@ -109,7 +99,6 @@ let
     implicit-hie
     xmobar
     ghc
-    ghcid
   ];
 
   xmonadPkgs = with pkgs; [
