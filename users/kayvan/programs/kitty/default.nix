@@ -5,7 +5,7 @@
 
       extraConfig = ''
         font_family Mono Book
-        font_size 13
+        font_size 12
         enable_audio_bell = false;
 '';
   };

@@ -26,7 +26,6 @@ let
     fd                   # "find" for files
     feh                  # image viewer
     file                 # light weight image viewer
-    firefox
     gcc                  # C/C++
     gh                   # github CLI tool
     grafana
@@ -42,6 +41,7 @@ let
     libnotify            # notify-send command
     libreoffice          # mostly for the pdf editor
     lsof                 # A tool to list open files
+    magic-wormhole ## secure transfer of data between computers
     multilockscreen      # fast lockscreen based on i3lock
     cinnamon.nemo        # file explorer
     neofetch             # command-line system information
@@ -65,7 +65,12 @@ let
     termonad             # haskell terminal emulator
     tmate                # tmux like Terminal Sharing
     tree                 # display files in a tree view
+    texliveTeTeX         # emacs latxt to pdf
+texlivePackages.wrapfig
+texlivePackages.marvosym
+texlivePackages.wasysym
     usbutils             # Tools for working with USB devices, such as lsusb
+    unzip
     volumeicon           # volume icon for trayer
     virt-manager         # mange vms
     virt-viewer          # view vmx
@@ -82,10 +87,13 @@ let
   ];
   home.stateVersion = "22.05";
 
-  pythonPkgs = with pkgs.python311Packages;[
-    # ipython
-    pip
+  pythonPkgs = [
+    (pkgs.python3.withPackages (python-pkgs:[
+      python-pkgs.pandas
+      python-pkgs.requests
+    ]))
   ];
+
   gitPkgs = with pkgs.gitAndTools; [
     diff-so-fancy # git diff with colors
     git-crypt     # git files encryption
@@ -113,7 +121,7 @@ let
     xorg.xdpyinfo
   ];
 
-  nodePkgs = with pkgs.NodePackages; [
+  nodePkgs = with pkgs.nodePackages; [
     bash-language-server
   ];
 
@@ -136,6 +144,7 @@ in
       gitPkgs ++
       haskellPkgs ++
       pythonPkgs ++
+      nodePkgs++
       xmonadPkgs ;
 
       sessionVariables = {
@@ -183,7 +192,7 @@ in
     zsh.enable = true;
     emacs = {
       enable = true;
-      package = pkgs.emacs29-gtk3;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
+      package = pkgs.emacs29-gtk3;
       extraPackages = epkgs: [
         epkgs.nix-mode
         epkgs.magit
@@ -202,31 +211,20 @@ in
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      # enableBashIntegration = true;
       nix-direnv.enable = true;
     };
     jq.enable = true;
     ssh = {
       enable = true;
       extraConfig = ''
-        Host *
-        ControlMaster auto
-        ControlPath /tmp/%r@%h:%p
-        ControlPersist 2h
-        # Read more about SSH config files: https://linux.die.net/man/5/ssh_config
-#
-        Host q2io.dev
-        HostName q2io.dev
-        User q2io
-#
         Host testbox
         HostName 192.168.122.23
         User kayvan
-#
+        #
         Host saturn-t480
         HostName 192.168.183.240
         User kayvan
-#
+        #
         Host github.com
         HostName github.com
         User git
@@ -234,15 +232,14 @@ in
         IdentitiesOnly yes
 
         Host github.com-schwarzer-swan
-          HostName github.com
-          User schwarzer-swan
-          IdentityFile ~/.ssh/schwarzer_swan_rsa
-          IdentitiesOnly yes
+        HostName github.com
+        User schwarzer-swan
+        IdentityFile ~/.ssh/schwarzer_swan_rsa
+        IdentitiesOnly yes
       '';
     };
     zoxide = {
       enable = true;
-      # enableBashIntegration = true;
       enableZshIntegration = true;
       options = [];
     };

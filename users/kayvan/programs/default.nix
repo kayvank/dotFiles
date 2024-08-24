@@ -6,4 +6,5 @@
   ./xmonad
   ./git
   ./networkmanager
+  ./neovim
 ]

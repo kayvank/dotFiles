@@ -40,6 +40,7 @@ in {
     ./users.nix
     ./environment.nix
     ./services.nix
+    ./zsa-keyboard.nix
   ];
 
 
