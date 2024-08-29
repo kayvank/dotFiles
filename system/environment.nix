@@ -1,18 +1,30 @@
 { config, lib, pkgs, ... }:
 
 {
+
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
+    brave
     cachix
     dict
     dunst
     git
+    grim # screenshot functionality
     home-manager
-    konsole
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    kitty
+    libnotify
+    libvirt
+    mako # notification system developed by swaywm maintainer
     pciutils
-    qemu_kvm
+    qemu
+    rofi-wayland
+    slurp # screenshot functionality
+    swww # wallpaper
+    virt-manager
+    # waybar
     wget
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    wofi
     xorg.xbacklight
   ];
 }

@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs"; ## use our nixpkgs instead of HM one
@@ -10,17 +15,17 @@
     iohk-hix = {
       url = "github:input-output-hk/haskell.nix";
     };
-    # nurpkgs = {url = github:nix-community/NUR; inputs.nixpkgs.follows = "nixpkgs";};
-    # text2nix = {url = github:Mic92/tex2nix/4b17bc0; inputs.utils.follows = "nixpkgs";};
   };
 
-  outputs = inputs @
-    { self
-    , nixpkgs
-    # , nurpkgs , text2nix
-    , home-manager
-    , iohk-hix
-    , ... }:
+  outputs =
+  { self
+  , nixpkgs
+  # , nurpkgs , text2nix
+  , home-manager
+  , iohk-hix
+  , hyprland
+  , hyprland-plugins
+  , ... } @ inputs:
   let
     system = "x86_64-linux";
 
@@ -34,29 +39,29 @@
   in {
     homeManagerConfigurations = {
       kayvan = home-manager.lib.homeManagerConfiguration {
- pkgs = nixpkgs.legacyPackages.${system};
-modules = [
-./users/kayvan/home.nix
-{
-      home = {
-        username = "kayvan";
-        homeDirectory = "/home/kayvan";
-        stateVersion = "22.05";
-      };
-    }
-];
+      extraSpecialArgs = { inherit inputs; };
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          ./users/kayvan/home.nix
+          {
+            home = {
+              username = "kayvan";
+              homeDirectory = "/home/kayvan";
+              stateVersion = "22.05";
+            };
+          }
+        ];
       };
     };
+
     nixosConfigurations = {
       saturn-iohk = lib.nixosSystem { ## gets all the system stuff by hostname
       inherit system;
-
+      specialArgs = { inherit inputs; };
       modules = [
         ./system/configuration.nix
       ];
       };
     };
   };
-
-
 }

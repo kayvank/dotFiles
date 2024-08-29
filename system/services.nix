@@ -2,14 +2,6 @@
 
 {
   services = {
-      libinput = {
-        enable = true;
-        touchpad = {
-          disableWhileTyping = true;
-          tapping = true;
-          buttonMapping = "lmr";
-        };
-      };
 
     gnome.gnome-keyring.enable = true;
 
@@ -23,6 +15,14 @@
     };
 
     openssh.enable = true;
+
+    pipewire = {
+     enable = true;
+     alsa.enable = true;
+     alsa.support32Bit = true;
+     pulse.enable = true;
+     jack.enable = true;
+    };
 
   };
 }

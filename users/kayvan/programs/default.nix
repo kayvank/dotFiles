@@ -1,10 +1,14 @@
 [
   ./rofi ## menu
-  ./tmux
-  ./zsh
+  ./shell
   ./kitty ## terminal
-  ./xmonad
   ./git
   ./networkmanager
+  ./waybar
+  ./kanshi
   ./neovim
+  ./hyprlock
+  ./hyprpaper
+  ./pyprland
+  ./waybar
 ]

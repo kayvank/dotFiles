@@ -8,7 +8,16 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "thunderbolt"
+    "vmd"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -32,17 +41,32 @@
     };
 
   swapDevices = [{ device = "/.swapfile"; } ];
+        powerManagement = {
+          enable = true;
+          powertop.enable = true;
+          cpuFreqGovernor = lib.mkDefault "ondemand";
+        };
+        # high-resolution display
+        #
+        hardware = {
+          # pulseaudio = {enable = true; package = pkgs.pulseaudioFull;};
+          bluetooth = {
+            enable = true;
+            settings = {
+              General = {
+                Enable = "Source,Sink,Media,Socket";
+              };
+            };
+          };
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+          graphics.enable = true;
+          nvidia.modesetting.enable = true;
+        };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+        environment.variables = {
+          # VDPAU_DRIVER = lib.mkIf config.hardware.graphics.enable (lib.mkDefault "va_gl");
+          VDPAU_DRIVER = lib.mkIf config.hardware.graphics.enable (lib.mkDefault "va_gl");
+        };
 
-  hardware.bluetooth.enable = true;
+
 }

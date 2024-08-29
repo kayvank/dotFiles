@@ -30,21 +30,30 @@ in {
 
   imports = [
     ./hardware-configuration.nix
-    ./cache.nix
     ./boot.nix
-    ./network.nix
-    ./xserver.nix
-    ./printing.nix
-    ./sound.nix
-    ./virtualisation.nix
-    ./users.nix
+    ./cache.nix
     ./environment.nix
+    ./greetd.nix
+    ./network.nix
+    ./opengl.nix
+    ./printing.nix
+    ./programs.nix
+    ./security.nix
     ./services.nix
+    # ./sound.nix
+    ./users.nix
+    ./virtualisation.nix
+    ./wm/hyprland.nix
     ./zsa-keyboard.nix
   ];
 
-
-
+ systemd.user.services.kanshi = {
+    description = "kanshi daemon";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
+    };
+  };
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
@@ -57,5 +66,4 @@ in {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
 }

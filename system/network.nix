@@ -6,10 +6,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp108s0.useDHCP = lib.mkDefault true;
-  networking.hostName = "saturn-iohk"; # Define your hostname.
+  networking.hostName = "saturn-iohk";
   # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager = {
     enable = true; # Easiest to use and most distros use this by default.
     insertNameservers = [ # # google nameservers

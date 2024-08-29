@@ -24,19 +24,9 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs = {
-    light.enable = true;
-    mtr.enable = true;
-    dconf.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    zsh.enable = true;
-  };
 
-    nix.settings = {
-      trusted-users = [ "root" "kayvan" "@wheel" ];
-      auto-optimise-store = true;
-    };
+  nix.settings = {
+    trusted-users = [ "root" "kayvan" "@wheel" ];
+    auto-optimise-store = true;
+  };
 }

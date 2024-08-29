@@ -1,17 +1,22 @@
 { config, lib, pkgs, ... }:
 
 {
+  #Some useful keybinds
+  #$ go to end of the line
+  #0 go to start of the line
+  #shift + g go to bottom of the file
+  #g + g go to start of the file
+  #shift + up/down arrow scroll faster
   programs.neovim =
-  let
-    toLua = str: "lua << EOF\n${str}\nEOF\n";
-    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-
-  in {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-
+    let
+      toLua = str: "lua << EOF\n${str}\nEOF\n";
+      toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+    in
+    {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
 
     extraPackages = with pkgs; [
       lua-language-server
@@ -19,6 +24,7 @@
       xclip
       wl-clipboard
     ];
+
 
     plugins = with pkgs.vimPlugins; [
 
@@ -33,8 +39,13 @@
       }
 
       {
-        plugin = gruvbox-nvim;
-        config = "colorscheme gruvbox";
+        plugin = dracula-nvim;
+        config = "colorscheme dracula";
+      }
+
+      {
+        plugin = haskell-tools-nvim;
+        config = toLuaFile ./plugin/haskell.lua;
       }
 
       neodev-nvim
@@ -77,14 +88,21 @@
       vim-nix
 
       # {
-        #   plugin = vimPlugins.own-onedark-nvim;
-        #   config = "colorscheme onedark";
-        # }
+      #   plugin = vimPlugins.own-onedark-nvim;
+      #   config = "colorscheme onedark";
+      # }
     ];
+
     extraLuaConfig = ''
       ${builtins.readFile ./options.lua}
     '';
 
-  };
-
+      extraConfig = ''
+        set number
+        syntax on
+        set shiftwidth=2
+        set smarttab
+        set clipboard+=unnamedplus
+      '';
+    };
 }
