@@ -4,8 +4,7 @@ let
   zshConfig = ''
     bindkey -v
     eval "$(direnv hook zsh)"
-    # eval "$(starship init zsh)"
-    # neofetch
+    nerdfetch
     '';
 in
 {
@@ -26,11 +25,9 @@ in
       whaskell  = "cd ~/dev/workspaces/workspace-haskell";
       wsoos     = "cd ~/dev/workspaces/workspace-soostone";
       wiohk     = "cd ~/dev/workspaces/workspace-iohk";
-      wumb      = "cd ~/dev/workspaces/workspace-umbrage";
+      wq2io     = "cd ~/dev/workspaces/workspace-q2io";
       wdev      = "cd ~/dev";
       wwork     = "cd ~/dev/workspaces";
-      wproto    = "cd ~/dev/workspaces/workspace-proto";
-      wnixos    = "cd ~/dev/workspaces/workspace-nixos";
       tmx       = "tmux new-session -s $USER-`date +%s`";
     };
     sessionVariables = { ## shell env vars are set here

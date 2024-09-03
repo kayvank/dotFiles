@@ -62,7 +62,7 @@ let
     lsof                 # A tool to list open files
     # music-player
     cinnamon.nemo        # file explorer
-    neofetch             # command-line system information
+    nerdfetch             # command-line system information
     nixpkgs-fmt        # format nix files
     nix-prefetch-git
     pa_applet            # pulseaudio applet for trayer

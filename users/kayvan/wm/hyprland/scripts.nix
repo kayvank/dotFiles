@@ -13,10 +13,10 @@ let
       dispatch moveworkspacetomonitor 3 ${extMonitor};\
       dispatch moveworkspacetomonitor 4 ${extMonitor};\
       dispatch moveworkspacetomonitor 5 ${extMonitor};\
-      dispatch moveworkspacetomonitor 6 ${extMonitor}"
-      dispatch moveworkspacetomonitor 7 ${extMonitor}"
-      dispatch moveworkspacetomonitor 8 ${extMonitor}"
-      dispatch moveworkspacetomonitor 9 ${extMonitor}"
+      dispatch moveworkspacetomonitor 6 ${extMonitor};\
+      dispatch moveworkspacetomonitor 7 ${extMonitor};\
+      dispatch moveworkspacetomonitor 8 ${extMonitor};\
+      dispatch moveworkspacetomonitor 9 ${extMonitor};\
   '';
 
 
