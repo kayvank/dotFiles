@@ -4,6 +4,14 @@ let
   homeDirectory = "/home/${username}";
   configHome = "${homeDirectory}/.config";
 
+  screenCapture = pkgs.pkgs.writeShellScriptBin "start" ''
+    DIR_PATH=$HOME/Pictures/Screenshots
+    mkdir -p $DIR_PATH
+    FILE_PATH=$DIR_PATH/$(date +'%s_grim.png')
+    grim -g "$(slurp)" $FILE_PATH
+    imv $FILE_PATH
+'';
+
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
@@ -33,7 +41,7 @@ let
 
   defaultPkgs = with pkgs; [
     arandr               # simple GUI for xrandr
-    mate.atril
+    mate.atril           # A simple multi-page document viewer
     aspell
     aspellDicts.en       # Aspell dictionary for English
     bgs # Extremely fast and small background setter for X
@@ -44,6 +52,7 @@ let
     cowsay               # cow shell ouput
     docker-compose       # docker manager
     duf                  # disk utility
+    devenv               # A simple multi-page document viewer
     direnv               # customize env per directory
     eza                  # a better `ls`
     fd                   # "find" for files
@@ -51,25 +60,22 @@ let
     file                 # light weight image viewer
     gcc                  # C/C++
     gh                   # github CLI tool
-    grafana
     gimp                 # gnu image manipulation program
     glow                 # terminal markdown viewer
     gnumake              # A tool to control the generation of non-source files from sources
     gvfs                 # gnu Virtual Filesystem support library
+    imv                  # image viewer
     ispell               # An interactive spell-checking program for Unix usec by emacs
     killall              # kill processes by name
-    # kitty
     lsof                 # A tool to list open files
-    # music-player
     cinnamon.nemo        # file explorer
-    nerdfetch             # command-line system information
-    nixpkgs-fmt        # format nix files
+    nerdfetch            # command-line system information
+    nixpkgs-fmt          # format nix files
     nix-prefetch-git
     pa_applet            # pulseaudio applet for trayer
     pgformatter          # postgresql sql syntax beatifier
     ranger               # terminal file explorer
     rtags                # C/C++ client-server indexer based on clang
-    # redis                # redis
     ripgrep              # fast grep
     sbcl                 # lisp compiler
     shfmt                # a shell parser and formatter
@@ -82,20 +88,17 @@ let
     virt-viewer          # view vmx
     vscode               # ms visual studio
     watchexec            # execute commands in response to file change
-    xsel                 # clipboard support (also for neovim)
-    xclip                # copy pate like mac does
-    yarn                 # js build
     zip                  # zip archive
     zeal                 # offline api docs
-    wl-clipboard # clipboard support
-    wofi # app launcher
-    xwaylandvideobridge # screensharing bridge
-    brightnessctl # control laptop display brightness
-    loupe # image viewer
-    grim # screenshots
-    grimblast # screenshot program from hyprland
-    libnotify # notificationsk
-    nix-search-cli # faster nix serach client
+    wl-clipboard         # clipboard support
+    wofi                 # app launcher
+    xwaylandvideobridge  # screensharing bridge
+    brightnessctl        # control laptop display brightness
+    loupe                # image viewer
+    grim                 # screenshots
+    grimblast            # screenshot program from hyprland
+    libnotify            # notificationsk
+    nix-search-cli       # faster nix serach client
 
   ] ++ fontPkgs ++ audioPkgs;
   home.stateVersion = "22.05";
@@ -305,6 +308,7 @@ in
       bindel=,XF86AudioRaiseVolume,exec,${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bindel=,XF86AudioLowerVolume,exec,${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-
       bindl=,XF86AudioMute,exec,${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
+      bindl=,Print,exec,${screenCapture}
       monitor = , preferred, auto, 1
  ${workspaceConf { monitor = ", preferred, auto, 1"; }}
 

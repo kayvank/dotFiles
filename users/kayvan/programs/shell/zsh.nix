@@ -20,8 +20,8 @@ in
       emc       = "nohup emacsclient -c &> /dev/null &";
       emd       = "emacs --daemon";
       ping      = "prettyping";
-      pbcopy    = "xsel -ib";
-      pbpaste   = "xsel -ob";
+      pbcopy    = "wl-copy";
+      pbpaste   = "wl-paste";
       whaskell  = "cd ~/dev/workspaces/workspace-haskell";
       wsoos     = "cd ~/dev/workspaces/workspace-soostone";
       wiohk     = "cd ~/dev/workspaces/workspace-iohk";
