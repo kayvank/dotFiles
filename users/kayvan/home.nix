@@ -48,7 +48,9 @@ let
 
 	  bemenu #  	#App launcher
     brightnessctl        # Xbacklight (Hardware Level)
+    cinnamon.nemo        # file explorer
     cmake
+    code-cursor          # cursor ai tool
     cowsay               # cow shell ouput
     docker-compose       # docker manager
     duf                  # disk utility
@@ -63,17 +65,23 @@ let
     gimp                 # gnu image manipulation program
     glow                 # terminal markdown viewer
     gnumake              # A tool to control the generation of non-source files from sources
+    grim                 # screenshots
+    grimblast            # screenshot program from hyprland
     gvfs                 # gnu Virtual Filesystem support library
     imv                  # image viewer
     ispell               # An interactive spell-checking program for Unix usec by emacs
     killall              # kill processes by name
+    libnotify            # notificationsk
+    loupe                # image viewer
     lsof                 # A tool to list open files
-    cinnamon.nemo        # file explorer
+    mp4v2                # Provides functions to read, create, and modify mp4 files
     nerdfetch            # command-line system information
     nixpkgs-fmt          # format nix files
     nix-prefetch-git
+    nix-search-cli       # faster nix serach client
     pa_applet            # pulseaudio applet for trayer
     pgformatter          # postgresql sql syntax beatifier
+    prettyping           # like ping
     ranger               # terminal file explorer
     rtags                # C/C++ client-server indexer based on clang
     ripgrep              # fast grep
@@ -81,24 +89,21 @@ let
     shfmt                # a shell parser and formatter
     sqlite               # db sqlite
     slack                # messaging client
+    telegram-desktop
     tmate                # tmux like Terminal Sharing
     tree                 # display files in a tree view
     volumeicon           # volume icon for trayer
     virt-manager         # mange vms
     virt-viewer          # view vmx
-    vscode               # ms visual studio
+    # vivaldi              # brwoser
+    # vscode               # ms visual studio
     watchexec            # execute commands in response to file change
-    zip                  # zip archive
-    zeal                 # offline api docs
+    wayfarer             # Screen recording for wayland
     wl-clipboard         # clipboard support
     wofi                 # app launcher
     xwaylandvideobridge  # screensharing bridge
-    brightnessctl        # control laptop display brightness
-    loupe                # image viewer
-    grim                 # screenshots
-    grimblast            # screenshot program from hyprland
-    libnotify            # notificationsk
-    nix-search-cli       # faster nix serach client
+    zip                  # zip archive
+    zeal                 # offline api docs
 
   ] ++ fontPkgs ++ audioPkgs;
   home.stateVersion = "22.05";
