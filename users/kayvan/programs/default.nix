@@ -9,6 +9,5 @@
   ./neovim
   ./hyprlock
   ./hyprpaper
-  ./pyprland
   ./waybar
 ]

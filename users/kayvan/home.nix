@@ -318,7 +318,6 @@ in
  ${workspaceConf { monitor = ", preferred, auto, 1"; }}
 
       exec-once=${hyprpaper}
-      exec-once=${pkgs.pyprland}/bin/pypr
       exec-once=${pkgs.blueman}/bin/blueman-applet
       exec-once=${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator
     '';
