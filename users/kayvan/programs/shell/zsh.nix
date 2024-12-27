@@ -23,7 +23,6 @@ in
       pbcopy    = "wl-copy";
       pbpaste   = "wl-paste";
       whaskell  = "cd ~/dev/workspaces/workspace-haskell";
-      wsoos     = "cd ~/dev/workspaces/workspace-soostone";
       wiohk     = "cd ~/dev/workspaces/workspace-iohk";
       wq2io     = "cd ~/dev/workspaces/workspace-q2io";
       wdev      = "cd ~/dev";

@@ -7,6 +7,10 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   networking.hostName = "saturn-iohk";
+  networking.extraHosts =
+    ''
+    192.168.122.156 saturn-vm
+    '';
   # Pick only one of the below networking options.
   networking.networkmanager = {
     enable = true; # Easiest to use and most distros use this by default.

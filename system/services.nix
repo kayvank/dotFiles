@@ -3,7 +3,7 @@
 {
   services = {
 
-    gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = false;
 
     upower.enable = true;
 

@@ -48,7 +48,7 @@ let
 
 	  bemenu #  	#App launcher
     brightnessctl        # Xbacklight (Hardware Level)
-    cinnamon.nemo        # file explorer
+    nemo        # file explorer
     cmake
     code-cursor          # cursor ai tool
     cowsay               # cow shell ouput
@@ -60,6 +60,7 @@ let
     fd                   # "find" for files
     feh                  # image viewer
     file                 # light weight image viewer
+    firefox
     gcc                  # C/C++
     gh                   # github CLI tool
     gimp                 # gnu image manipulation program
@@ -95,6 +96,8 @@ let
     volumeicon           # volume icon for trayer
     virt-manager         # mange vms
     virt-viewer          # view vmx
+    virtiofsd
+
     # vivaldi              # brwoser
     # vscode               # ms visual studio
     watchexec            # execute commands in response to file change
@@ -117,10 +120,10 @@ let
 
   haskellPkgs = with pkgs.haskellPackages; [
     cabal-install           # package manager
-    haskell-language-server # haskell IDE (ships with ghcide)
+    # haskell-language-server # haskell IDE (ships with ghcide)
     hoogle                  # documentation
     implicit-hie
-    ghc
+    # ghc
   ];
   pythonPkgs = [
     (pkgs.python3.withPackages (python-pkgs: [
@@ -129,9 +132,6 @@ let
     ]))
   ];
 
-  nodePkgs = with pkgs.NodePackages; [
-    bash-language-server
-  ];
 
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   gblast = "${pkgs.grimblast}/bin/grimblast";
@@ -259,46 +259,40 @@ in
       nix-direnv.enable = true;
     };
     jq.enable = true;
-    ssh = {
-      enable = true;
-      extraConfig = ''
-        Host *
-        ControlMaster auto
-        ControlPath /tmp/%r@%h:%p
-        ControlPersist 2h
-        # Read more about SSH config files: https://linux.die.net/man/5/ssh_config
-        #
-        Host q2io.dev
-        HostName q2io.dev
-        User q2io
-        #
-        Host testbox
-        HostName 192.168.122.23
-        User kayvan
-        #
-        Host saturn-t480
-        HostName 192.168.183.240
-        User kayvan
-        #
-        Host github.com
-        HostName github.com
-        User git
-        IdentityFile ~/.ssh/id_rsa_q2io
-        IdentitiesOnly yes
+    #
+    # vscode remote gets mad at the ~/.ssh/config symlink from nix. Thus hand writting this for now
+    #
+    # ssh = {enable = true;
+      # extraConfig = ''
+      #   Host *
+      #   ControlMaster auto
+      #   ControlPath /tmp/%r@%h:%p
+      #   ControlPersist 2h
+      #   # Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+      #   #
+      #   Host saturn-vm
+      #   HostName 192.168.122.156
+      #   User kayvan
+      #   #
+      #   Host github.com
+      #   HostName github.com
+      #   User git
+      #   IdentityFile ~/.ssh/id_rsa_q2io
+      #   IdentitiesOnly yes
 
-        Host github.com-schwarzer-swan
-        HostName github.com
-        User schwarzer-swan
-        IdentityFile ~/.ssh/schwarzer_swan_rsa
-        IdentitiesOnly yes
-      '';
-    };
-    zoxide = {
-      enable = true;
-      # enableBashIntegration = true;
-      enableZshIntegration = true;
-      options = [];
-    };
+      #   Host github.com-schwarzer-swan
+      #   HostName github.com
+      #   User schwarzer-swan
+      #   IdentityFile ~/.ssh/schwarzer_swan_rsa
+      #   IdentitiesOnly yes
+      # '';
+    # };
+    # zoxide = {
+    #   enable = true;
+    #   # enableBashIntegration = true;
+    #   enableZshIntegration = true;
+    #   options = [];
+    # };
   }; ## program
 
 
