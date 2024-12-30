@@ -20,6 +20,7 @@
     rofi-wayland
     slurp # screenshot functionality
     swww # wallpaper
+    udiskie
     virt-manager
     # waybar
     wget

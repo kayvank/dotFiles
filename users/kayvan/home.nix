@@ -69,6 +69,7 @@ let
     grim                 # screenshots
     grimblast            # screenshot program from hyprland
     gvfs                 # gnu Virtual Filesystem support library
+    html-tidy            # html vlidator
     imv                  # image viewer
     ispell               # An interactive spell-checking program for Unix usec by emacs
     killall              # kill processes by name
@@ -90,6 +91,8 @@ let
     shfmt                # a shell parser and formatter
     sqlite               # db sqlite
     slack                # messaging client
+    solc                 # Compiler for Ethereum smart contract language Solidity
+    stylelint            # CSS linter
     telegram-desktop
     tmate                # tmux like Terminal Sharing
     tree                 # display files in a tree view
@@ -99,7 +102,7 @@ let
     virtiofsd
 
     # vivaldi              # brwoser
-    # vscode               # ms visual studio
+    vscode               # ms visual studio
     watchexec            # execute commands in response to file change
     wayfarer             # Screen recording for wayland
     wl-clipboard         # clipboard support
@@ -110,6 +113,11 @@ let
 
   ] ++ fontPkgs ++ audioPkgs;
   home.stateVersion = "22.05";
+
+  nodePackages = with pkgs.nodePackages; [
+    cspell
+    js-beautify
+  ];
 
   gitPkgs = with pkgs.gitAndTools; [
     diff-so-fancy # git diff with colors
@@ -129,6 +137,8 @@ let
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pandas
       python-pkgs.requests
+      python-pkgs.isort
+
     ]))
   ];
 
