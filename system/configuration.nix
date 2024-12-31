@@ -33,7 +33,7 @@ in {
     ./boot.nix
     ./cache.nix
     ./environment.nix
-    ./greetd.nix
+    # ./greetd.nix
     ./network.nix
     ./opengl.nix
     ./printing.nix
