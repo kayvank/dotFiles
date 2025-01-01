@@ -6,7 +6,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  networking.hostName = "saturn-iohk";
+  networking.hostName = "saturn-xeon";
   networking.extraHosts =
     ''
     192.168.122.156 saturn-vm

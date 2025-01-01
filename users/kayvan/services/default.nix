@@ -5,6 +5,5 @@
   ./nixos-vscode-ssh-fix
   ./hypridle
   ./flameshot
-  ./udiskie
   ./dunst
 ]

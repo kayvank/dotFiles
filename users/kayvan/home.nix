@@ -60,7 +60,7 @@ let
     fd                   # "find" for files
     feh                  # image viewer
     file                 # light weight image viewer
-    firefox
+    firefox-beta
     gcc                  # C/C++
     gh                   # github CLI tool
     gimp                 # gnu image manipulation program
@@ -260,41 +260,7 @@ in
       nix-direnv.enable = true;
     };
     jq.enable = true;
-    #
-    # vscode remote gets mad at the ~/.ssh/config symlink from nix. Thus hand writting this for now
-    #
-    # ssh = {enable = true;
-      # extraConfig = ''
-      #   Host *
-      #   ControlMaster auto
-      #   ControlPath /tmp/%r@%h:%p
-      #   ControlPersist 2h
-      #   # Read more about SSH config files: https://linux.die.net/man/5/ssh_config
-      #   #
-      #   Host saturn-vm
-      #   HostName 192.168.122.156
-      #   User kayvan
-      #   #
-      #   Host github.com
-      #   HostName github.com
-      #   User git
-      #   IdentityFile ~/.ssh/id_rsa_q2io
-      #   IdentitiesOnly yes
-
-      #   Host github.com-schwarzer-swan
-      #   HostName github.com
-      #   User schwarzer-swan
-      #   IdentityFile ~/.ssh/schwarzer_swan_rsa
-      #   IdentitiesOnly yes
-      # '';
-    # };
-    # zoxide = {
-    #   enable = true;
-    #   # enableBashIntegration = true;
-    #   enableZshIntegration = true;
-    #   options = [];
-    # };
-  }; ## program
+  };
 
 
   wayland.windowManager.hyprland = {

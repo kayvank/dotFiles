@@ -8,43 +8,41 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "thunderbolt"
-    "vmd"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-    "rtsx_pci_sdmmc"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+    boot.initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "nvme"
+      "usb_storage"
+      "sd_mod"
+      "rtsx_pci_sdmmc"
+    ];
+    boot.initrd.kernelModules = ["i915" ];
+    boot.kernelModules = ["kvm-intel" ];
+    boot.extraModulePackages = [];
+    # boot.blacklistedKernelModules = lib.mkDefault [ "nouveau" "nvidia" ];
+    # boot.blacklistedKernelModules = ["nouveau" "nvidia_drm" "nvidia_modeset" "nvidia"];
+    boot.kernelParams = [ "mem_sleep_default=deep" ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-label/nixos";
+    fileSystems."/" =
+      { device = "/dev/disk/by-uuid/6813901b-f560-44d1-a06c-5d7a3503b5ae";
       fsType = "ext4";
-    };
+      };
 
-  fileSystems."/boot" =
-    { 
-      device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
-    };
+      fileSystems."/boot" =
+        { device = "/dev/disk/by-uuid/1FE8-921B";
+        fsType = "vfat";
+        };
 
-  fileSystems."/xdrive" =
-    {
-      device = "/dev/disk/by-label/xdrive";
-      fsType = "ext4";
-    };
 
-  swapDevices = [{ device = "/.swapfile"; } ];
+        swapDevices = [
+          {
+            device = "/.swapfile";
+          }
+
+        ];
+        # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
         powerManagement = {
           enable = true;
-          powertop.enable = true;
-          cpuFreqGovernor = lib.mkDefault "ondemand";
         };
         # high-resolution display
         #
@@ -61,12 +59,18 @@
 
           graphics.enable = true;
           nvidia.modesetting.enable = true;
+          nvidia.open = false;
+          nvidia.nvidiaSettings = true;
         };
 
-        environment.variables = {
-          # VDPAU_DRIVER = lib.mkIf config.hardware.graphics.enable (lib.mkDefault "va_gl");
-          VDPAU_DRIVER = lib.mkIf config.hardware.graphics.enable (lib.mkDefault "va_gl");
-        };
+        #  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+        # This runs only Intel and nvidia does not drain power.
+
+        ##### disable nvidia, very nice battery life.
+        # hardware.nvidiaOptimus.disable = lib.mkDefault true;
+
+        # environment.variables = {VDPAU_DRIVER = lib.mkIf config.hardware.graphics.enable (lib.mkDefault "va_gl");};
 
 
 }

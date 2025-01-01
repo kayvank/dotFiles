@@ -47,7 +47,7 @@
             home = {
               username = "kayvan";
               homeDirectory = "/home/kayvan";
-              stateVersion = "25.05";
+              stateVersion = "24.05";
             };
           }
         ];
@@ -55,7 +55,7 @@
     };
 
     nixosConfigurations = {
-      saturn-xeon = lib.nixosSystem { ## gets all the system stuff by hostname
+      saturn-iohk = lib.nixosSystem { ## gets all the system stuff by hostname
       inherit system;
       specialArgs = { inherit inputs; };
       modules = [
