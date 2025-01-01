@@ -34,10 +34,6 @@ in
       PATH="$PATH:~/bin";
     };
 
-    oh-my-bash = {
-      enable = true;
-      theme = "robbyrussell" ; ## lambda
-    };
     initExtra   = bashConfig;
   };
 }

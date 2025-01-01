@@ -99,7 +99,7 @@ let
     virtiofsd
 
     # vivaldi              # brwoser
-    # vscode               # ms visual studio
+    vscode-with-extensions  # ms visual studio
     watchexec            # execute commands in response to file change
     wayfarer             # Screen recording for wayland
     wl-clipboard         # clipboard support
