@@ -3,7 +3,7 @@
 
   imports = [
     ./tmux.nix
-    # ./bash.nix
+    ./bash.nix
     ./zsh.nix
   ];
 }

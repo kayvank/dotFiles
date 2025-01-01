@@ -18,13 +18,11 @@ in
       emc       = "nohup emacsclient -c &> /dev/null &";
       emd       = "emacs --daemon";
       ping      = "prettyping";
-      pbcopy    = "xsel -ib";
-      pbpaste   = "xsel -ob";
-      whaskell  = "cd ~/dev/workspaces/workspace-haskell";
-      wsoos     = "cd ~/dev/workspaces/workspace-soostone";
-      wproto    = "cd ~/dev/workspaces/workspace-proto";
-      wnixos    = "cd ~/dev/workspaces/workspace-nixos";
-      wniohk    = "cd ~/dev/workspaces/workspace-iohk";
+      pbcopy    = "wl-copy";
+      pbpaste   = "wl-paste";
+
+      wq2io    = "cd ~/dev/workspaces/q2io";
+      wiohk    = "cd ~/dev/workspaces/iohk";
     };
     sessionVariables = { ## shell env vars are set here
       "EDITOR" = "vim";
@@ -34,6 +32,11 @@ in
       "HISTTIMEFORMAT"="[%F %T] ";
       DIRENV_ALLOW_NIX=1;
       PATH="$PATH:~/bin";
+    };
+
+    oh-my-bash = {
+      enable = true;
+      theme = "robbyrussell" ; ## lambda
     };
     initExtra   = bashConfig;
   };
