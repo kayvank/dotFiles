@@ -15,6 +15,7 @@
     iohk-hix = {
       url = "github:input-output-hk/haskell.nix";
     };
+     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
   outputs =
@@ -25,6 +26,7 @@
   , iohk-hix
   , hyprland
   , hyprland-plugins
+  , nix-doom-emacs
   , ... } @ inputs:
   let
     system = "x86_64-linux";
@@ -47,7 +49,7 @@
             home = {
               username = "kayvan";
               homeDirectory = "/home/kayvan";
-              stateVersion = "24.05";
+              stateVersion = "22.05";
             };
           }
         ];

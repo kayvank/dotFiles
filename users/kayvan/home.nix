@@ -1,4 +1,4 @@
-{ config, pkgs, lib, stdenv,inputs, ... }:
+{ config, pkgs, lib, stdenv, inputs, ... }:
 let
   username = "kayvan";
   homeDirectory = "/home/${username}";
@@ -10,7 +10,7 @@ let
     FILE_PATH=$DIR_PATH/$(date +'%s_grim.png')
     grim -g "$(slurp)" $FILE_PATH
     imv $FILE_PATH
-'';
+  '';
 
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
@@ -136,9 +136,9 @@ let
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   gblast = "${pkgs.grimblast}/bin/grimblast";
   hyprlock = "${pkgs.hyprlock}/bin/hyprlock";
-hyprpaper  = "${pkgs.hyprpaper}/bin/hyprpaper";
+  hyprpaper  = "${pkgs.hyprpaper}/bin/hyprpaper";
 
-scripts = import ./wm/hyprland/scripts.nix { inherit pkgs; } ;
+  scripts = import ./wm/hyprland/scripts.nix { inherit pkgs; } ;
 
   workspaceConf = { monitor }: ''
     workspace=1,persistent:true,monitor:${monitor}
@@ -262,7 +262,7 @@ in
       bindl=,XF86AudioMute,exec,${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
       bindl=,Print,exec,${screenCapture}
       monitor = , preferred, auto, 1
- ${workspaceConf { monitor = ", preferred, auto, 1"; }}
+      ${workspaceConf { monitor = ", preferred, auto, 1"; }}
 
       exec-once=${hyprpaper}
       exec-once=${pkgs.blueman}/bin/blueman-applet

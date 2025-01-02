@@ -22,9 +22,8 @@ in
       ping      = "prettyping";
       pbcopy    = "wl-copy";
       pbpaste   = "wl-paste";
-      whaskell  = "cd ~/dev/workspaces/workspace-haskell";
-      wiohk     = "cd ~/dev/workspaces/workspace-iohk";
-      wq2io     = "cd ~/dev/workspaces/workspace-q2io";
+      wiohk     = "cd ~/dev/workspaces/iohk";
+      wq2io     = "cd ~/dev/workspaces/q2io";
       wdev      = "cd ~/dev";
       wwork     = "cd ~/dev/workspaces";
       tmx       = "tmux new-session -s $USER-`date +%s`";
